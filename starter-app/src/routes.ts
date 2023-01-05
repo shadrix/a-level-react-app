@@ -6,6 +6,7 @@ import User from "./pages/User";
 
 // other
 import {FC} from "react";
+import Login from "./pages/Login";
 
 // interface
 interface Route {
@@ -44,5 +45,12 @@ export const routes: Array<Route> = [
         path: '/user/:id',
         enabled: false,
         component: User
+    },
+    {
+        key: 'login-route',
+        title: 'Login',
+        path: '/login',
+        enabled: true,
+        component: Login
     }
 ]

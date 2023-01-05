@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, {FC, ReactElement, useContext} from "react";
 import {
   Box,
   Link,
@@ -12,8 +12,13 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { routes } from "../../routes";
 import { NavLink } from "react-router-dom";
+import {AppStoreContext} from "../../App";
+import {observer} from "mobx-react-lite";
+
 
 const Navbar: FC = (): ReactElement => {
+  const appStore = useContext(AppStoreContext);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event: any) => {
@@ -42,7 +47,10 @@ const Navbar: FC = (): ReactElement => {
               display: { xs: "none", md: "flex" },
             }}
           >
-            A-LEVEL CURSE
+            {!!appStore.authStore.token ? (
+                <span
+                    style={{ color: 'green' }}>{`Token is: ${appStore.authStore.token}`}</span>
+            ) : 'A-LEVEL CURSE'}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -95,7 +103,10 @@ const Navbar: FC = (): ReactElement => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            A-LEVEL CURSE
+            {!!appStore.authStore.token ? (
+                <span
+                    style={{ color: 'green' }}>{`Token is: ${appStore.authStore.token}`}</span>
+            ) : 'A-LEVEL CURSE'}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Box
@@ -128,4 +139,4 @@ const Navbar: FC = (): ReactElement => {
   );
 };
 
-export default Navbar;
+export default observer(Navbar);

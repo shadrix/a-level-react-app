@@ -20,7 +20,7 @@ const apiClient = async ({ path, method, data }: apiClientProps) => {
 interface apiClientProps {
   path: string
   method: string
-  data?: unknown
+  data?: any
 }
 
 export default apiClient
